@@ -90,34 +90,64 @@ public class Deck {
     //Return total value of cards in deck
     public int cardsValue(){
         int totalValue = 0;
-        int aces = 0;
+        int ace = 0;
 
-        for(Card cards : this.cards){
-            switch (cards.getValue()){
-                case TWO: totalValue +=2; break;
-                case THREE: totalValue +=3; break;
-                case FOUR: totalValue +=4; break;
-                case FIVE: totalValue +=5; break;
-                case SIX: totalValue +=6; break;
-                case SEVEN: totalValue +=7; break;
-                case EIGHT: totalValue +=8; break;
-                case NINE: totalValue +=9; break;
-                case TEN: totalValue +=10; break;
-                case JACK: totalValue +=10; break;
-                case QUEEN: totalValue +=10; break;
-                case KING: totalValue +=10; break;
-                case ACE: totalValue +=2; break;
-            }
-            for(int i = 0; i < aces; i++){
-                if(totalValue > 10){
-                    totalValue += 1;
-                }
-                else{
+        for(Card cards : this.cards) {
+            switch (cards.getValue()) {
+                case TWO:
+                    totalValue += 2;
+                    break;
+                case THREE:
+                    totalValue += 3;
+                    break;
+                case FOUR:
+                    totalValue += 4;
+                    break;
+                case FIVE:
+                    totalValue += 5;
+                    break;
+                case SIX:
+                    totalValue += 6;
+                    break;
+                case SEVEN:
+                    totalValue += 7;
+                    break;
+                case EIGHT:
+                    totalValue += 8;
+                    break;
+                case NINE:
+                    totalValue += 9;
+                    break;
+                case TEN:
+                    totalValue += 10;
+                    break;
+                case JACK:
+                    totalValue += 10;
+                    break;
+                case QUEEN:
+                    totalValue += 10;
+                    break;
+                case KING:
+                    totalValue += 10;
+                    break;
+                case ACE:
                     totalValue += 11;
+                    ace += 11;
+                    break;
+            }
+            if(totalValue > 21){
+                for(Card aces : this.cards){
+                    if(totalValue <= 21){
+                        break;
+                    }
+                    if(aces.getValue() == Value.ACE){
+                        totalValue -= 10;
+                    }
                 }
             }
+
         }
-        return totalValue;
+              return totalValue;
     }
 
 }
