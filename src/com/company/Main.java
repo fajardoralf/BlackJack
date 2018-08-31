@@ -52,15 +52,15 @@ public class Main {
                 System.out.println("Your hand: ");
                 System.out.print(playerDeck.toString());
                 System.out.println("\n" + "Your hand is: " + playerDeck.cardsValue());
-
-                //Display Dealer Hand
-                System.out.println("Dealer hand: \n" + dealerDeck.getCard(0).toString() +"\n"+ "[Hidden]");
-
                 //If player has blackjack break
                 if (playerDeck.cardsValue() == 21) {
                     System.out.println("BlackJack!");
                     break;
                 }
+
+                //Display Dealer Hand
+                System.out.println("Dealer hand: \n" + dealerDeck.getCard(0).toString() +"\n"+ "[Hidden]");
+
 
                 //What does the player want to do?
                 System.out.println("Would you like to Hit(1) or Stand(2)");
@@ -83,17 +83,13 @@ public class Main {
             }
             //If player has blackjack break
             if (playerDeck.cardsValue() == 21) {
+                playerMoney += playerBet;
                 endRound = true;
             }
 
             //Reveal Dealer Cards
             System.out.println("Dealer Cards: " + dealerDeck.toString());
-            //See if dealer has more points than player
-            if ((dealerDeck.cardsValue() > playerDeck.cardsValue()) && !endRound) {
-                System.out.println("Dealer wins");
-                playerMoney -= playerBet;
-                endRound = true;
-            }
+
             //Checks if players cards are over 21
             if (playerDeck.cardsValue() > 21) {
                 dealerDeck.toString();
@@ -142,8 +138,7 @@ public class Main {
             System.out.println("End of hand");
             System.out.println("--NEW ROUND--");
         }
-
+        userInput.close();
         System.out.println("Game over!");
-
     }
 }

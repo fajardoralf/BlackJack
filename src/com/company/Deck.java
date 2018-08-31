@@ -90,7 +90,8 @@ public class Deck {
     //Return total value of cards in deck
     public int cardsValue(){
         int totalValue = 0;
-        int ace = 0;
+        int aceValue = 0;
+        int aceCount = 4;
 
         for(Card cards : this.cards) {
             switch (cards.getValue()) {
@@ -132,15 +133,17 @@ public class Deck {
                     break;
                 case ACE:
                     totalValue += 11;
-                    ace += 11;
+                    aceValue += 11;
                     break;
             }
-            if(totalValue > 21){
+
+            if(totalValue > 21 || aceCount > 0){
                 for(Card aces : this.cards){
                     if(totalValue <= 21){
                         break;
                     }
                     if(aces.getValue() == Value.ACE){
+                        aceCount--;
                         totalValue -= 10;
                     }
                 }
